@@ -14,7 +14,7 @@ namespace CustomerValidation.Service.Messages
             this.id = id;
         }
 
-        public Guid Id => id;
+        public Guid CorrelationId => id;
         public string Name => command.Name;
         public string Tin => command.Tin;
         public string Ogrn => command.Ogrn;

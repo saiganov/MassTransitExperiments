@@ -8,5 +8,6 @@
 
         public const string CustomerValidationServiceQueue = "customervalidation.service";
         public const string CustomerDeduplicatedServiceQueue = "customerdeduplicated.service";
+        public const string SagaQueue = "saga.service";
     }
 }

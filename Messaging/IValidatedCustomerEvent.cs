@@ -4,7 +4,7 @@ namespace Messaging
 {
     public interface IValidatedCustomerEvent
     {
-        Guid Id { get; }
+        Guid CorrelationId { get; }
         string Name { get; }
         string Tin { get; }
         string Ogrn { get; }

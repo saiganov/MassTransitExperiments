@@ -11,7 +11,7 @@ namespace CustomerDeduplicated.Service
         {
             // TODO: deduplicate customer
 
-            await Console.Out.WriteLineAsync($"Customer deduplicated and do smth then: Id {context.Message.Id}; Name {context.Message.Name}");
+            await Console.Out.WriteLineAsync($"Customer deduplicated and do smth then: CorrelationId {context.Message.CorrelationId}; Name {context.Message.Name}");
         }
     }
 }

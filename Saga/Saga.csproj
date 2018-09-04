@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6D273075-F309-4CBC-AA64-5CD3443961EA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Messaging</RootNamespace>
-    <AssemblyName>Messaging</AssemblyName>
+    <ProjectGuid>{EFBBFA3A-6096-4287-AE4B-9ED4ABAFD558}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Saga</RootNamespace>
+    <AssemblyName>Saga</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,11 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Automatonymous, Version=4.1.1.102, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Automatonymous.4.1.1\lib\net452\Automatonymous.dll</HintPath>
+    </Reference>
     <Reference Include="GreenPipes, Version=2.1.1.108, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
       <HintPath>..\packages\GreenPipes.2.1.1\lib\net452\GreenPipes.dll</HintPath>
     </Reference>
     <Reference Include="MassTransit, Version=5.1.4.1587, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\packages\MassTransit.5.1.4\lib\net452\MassTransit.dll</HintPath>
+    </Reference>
+    <Reference Include="MassTransit.AutomatonymousIntegration, Version=5.1.4.1587, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\MassTransit.Automatonymous.5.1.4\lib\net452\MassTransit.AutomatonymousIntegration.dll</HintPath>
     </Reference>
     <Reference Include="MassTransit.RabbitMqTransport, Version=5.1.4.1587, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\packages\MassTransit.RabbitMQ.5.1.4\lib\net452\MassTransit.RabbitMqTransport.dll</HintPath>
@@ -68,16 +76,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusConfigurator.cs" />
-    <Compile Include="ICustomerValidationCommand.cs" />
-    <Compile Include="ISavedCustomerEvent.cs" />
-    <Compile Include="IValidatedCustomerEvent.cs" />
-    <Compile Include="RabbitMqConstants.cs" />
+    <Compile Include="CustomerSaga.cs" />
+    <Compile Include="CustomerSagaState.cs" />
+    <Compile Include="SavedCustomerEvent.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messaging\Messaging.csproj">
+      <Project>{6d273075-f309-4cbc-aa64-5cd3443961ea}</Project>
+      <Name>Messaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
